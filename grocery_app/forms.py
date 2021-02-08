@@ -10,7 +10,7 @@ class GroceryStoreForm(FlaskForm):
 
     title = StringField("Title", validators=[DataRequired(), Length(max=80)])
     address = StringField("Address", validators=[DataRequired(), Length(max=200)])
-    submit = SubmitField("Add")
+    submit = SubmitField("Submit")
 
 
 class GroceryItemForm(FlaskForm):
@@ -29,4 +29,4 @@ class GroceryItemForm(FlaskForm):
     store = QuerySelectField(
         "Store", query_factory=lambda: GroceryStore.query, allow_blank=False
     )
-    submit = SubmitField("Add")
+    submit = SubmitField("Submit")
