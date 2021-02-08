@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField, SelectField, SubmitField
+from wtforms import StringField, DateField, SelectField, SubmitField, FloatField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length, URL
 from grocery_app.models import ItemCategory
@@ -20,7 +20,7 @@ class GroceryItemForm(FlaskForm):
     price = FloatField("Price", validators=[DataRequired()])
     category = SelectField(
         "Category",
-        choices=Audience.choices(),
+        choices=ItemCategory.choices(),
         validators=[DataRequired()],
     )
     photo_url = StringField(
