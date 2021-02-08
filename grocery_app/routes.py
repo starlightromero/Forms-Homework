@@ -25,7 +25,7 @@ def new_store():
         db.session.add(store)
         db.session.commit()
         flash("A new grocery store has been successfully created.")
-        redirect(url_for("main.store_detail"))
+        redirect(url_for("main.store_detail", store_id=store.id))
     return render_template("new_store.html", form=form)
 
 
@@ -36,14 +36,14 @@ def new_item():
         item = GroceryItem(
             name=form.name.data,
             price=form.price.data,
-            category=form.price.data,
-            photo_url=form.price.data,
+            category=form.category.data,
+            photo_url=form.photo_url.data,
             store=form.store.data,
         )
         db.session.add(item)
         db.session.commit()
         flash("A new grocery item has been successfully created.")
-        redirect(url_for("main.item_detail"))
+        redirect(url_for("main.item_detail", item_id=item.id))
     return render_template("new_item.html", form=form)
 
 
@@ -56,7 +56,7 @@ def store_detail(store_id):
         store.address = form.address.data
         db.session.commit()
         flash("Grocery store has been successfully updated.")
-        redirect(url_form("main.store_detail"))
+        redirect(url_form("main.store_detail", store_id=store.id))
     return render_template("store_detail.html", store=store, form=form)
 
 
@@ -72,5 +72,5 @@ def item_detail(item_id):
         item.store = form.store.data
         db.session.commit()
         flash("Grocery item has been successfully updated.")
-        redirect(url_for("main.item_detail"))
+        redirect(url_for("main.item_detail", item_id=item.id))
     return render_template("item_detail.html", item=item, form=form)
