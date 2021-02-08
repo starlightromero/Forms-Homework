@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, DateField, SelectField, SubmitField, FloatField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length, URL
-from grocery_app.models import ItemCategory
+from grocery_app.models import ItemCategory, GroceryStore
 
 
 class GroceryStoreForm(FlaskForm):
@@ -10,7 +10,7 @@ class GroceryStoreForm(FlaskForm):
 
     title = StringField("Title", validators=[DataRequired(), Length(max=80)])
     address = StringField("Address", validators=[DataRequired(), Length(max=200)])
-    submit = SubmitField("Add Grocery Store")
+    submit = SubmitField("Add")
 
 
 class GroceryItemForm(FlaskForm):
@@ -29,4 +29,4 @@ class GroceryItemForm(FlaskForm):
     store = QuerySelectField(
         "Store", query_factory=lambda: GroceryStore.query, allow_blank=False
     )
-    submit = SubmitField("Add Grocery Item")
+    submit = SubmitField("Add")
