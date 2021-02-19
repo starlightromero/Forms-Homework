@@ -18,8 +18,18 @@
       <div>
         <a href="/new_store">New Store</a>
         <a href="/new_item">New Item</a>
+        <a href="/shopping_list">Shopping List</a>
+        {% if current_user %}
+        <a href="/logout">Logout</a>
+        {% else %}
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Login</a>
+        {% endif %}
       </div>
     </nav>
+    {% for message in get_flashed_messages() %}
+    <p>{{ message }}</p>
+    {% endfor %}
     {% block content %}{% endblock %}
   </div>
 </body>
